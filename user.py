@@ -14,7 +14,7 @@ class User:
 
     @password.setter
     def password(self, plaintext):
-        salt = os.urandom(32)
+        self.salt = os.urandom(32)
         self._hashed_password = hashlib.pbkdf2_hmac(
-            "sha256", plaintext.encode("utf-8"), salt, 100_000
+            "sha256", plaintext.encode("utf-8"), self.salt, 100_000
         )
